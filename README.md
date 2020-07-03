@@ -1,17 +1,20 @@
 ### OC源码编译，可直接运行、调试，通过它可以更好的理解OC的本质以及底层实现
+
+
 本项目中使用的是苹果源码 [objc4-781](https://opensource.apple.com/tarballs/objc4/) 版本， 系统版本为```macos 10.15``` ，可以从 [苹果开源源码](https://opensource.apple.com/source/) 和 [官方tarballs](https://opensource.apple.com/tarballs) 查看相关源码和依赖库， 所使用的到的依赖库如下：
+``libdispatch``
+``libpthread`` 
+``dyld``        
+``Libc``        
+``libplatform`` 
+``libauto``    
+``libclosure`` 
+``xnu``        
+
+<font color=red>以上项目可直接编译使用！如需自己编译，可查看以下步骤！否则可忽略以下步骤！</font>
 
 
-``libdispatch`` <br/>
-``libpthread``  <br/>
-``dyld``        <br/>
-``Libc``        <br/>
-``libplatform`` <br/>
-``libauto``     <br/>
-``libclosure``  <br/>
-``xnu``         <br/>
-
-### 问题与解决方案
+### 苹果源码编译问题与解决方案
 #### 1. macosx.internal 报错
 <p align="left" >
   <img src="https://github.com/gltwy/objc4/blob/master/images/image1.png?raw=true" width = 400>
