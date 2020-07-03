@@ -1,7 +1,5 @@
-##### OC源码编译，可直接运行、调试，通过它可以更好的理解OC的本质以及底层实现
-本项目中使用的是苹果源码 [objc4-781](https://opensource.apple.com/tarballs/objc4/) 版本， 系统版本为```macos 10.15```
-
-可以从 [苹果开源源码](https://opensource.apple.com/source/) 和 [官方tarballs](https://opensource.apple.com/tarballs) 查看相关源码和依赖库（如下）
+### OC源码编译，可直接运行、调试，通过它可以更好的理解OC的本质以及底层实现
+本项目中使用的是苹果源码 [objc4-781](https://opensource.apple.com/tarballs/objc4/) 版本， 系统版本为```macos 10.15``` ，可以从 [苹果开源源码](https://opensource.apple.com/source/) 和 [官方tarballs](https://opensource.apple.com/tarballs) 查看相关源码和依赖库， 所使用的到的依赖库如下：
 
 
 ``libdispatch`` <br/>
@@ -13,8 +11,8 @@
 ``libclosure``  <br/>
 ``xnu``         <br/>
 
-
-##### 1. macosx.internal 报错
+### 问题与解决方案
+#### 1. macosx.internal 报错
 <p align="left" >
   <img src="https://github.com/gltwy/objc4/blob/master/images/image1.png?raw=true" width = 400>
 </p>
@@ -25,8 +23,6 @@ unable to find sdk 'macosx.internal'
 
 - 将 ```Build Settings``` ->  ``` Base SDK```
 设置为 ``macos 10.15 ``
-<br/>
-
 - 将
 ``` Valid Architectures ```
 删除
@@ -34,7 +30,7 @@ unable to find sdk 'macosx.internal'
 架构支持
 
 
-##### 2. file not found 报错
+#### 2. file not found 报错
 <p align="left" >
   <img src="https://github.com/gltwy/objc4/blob/master/images/image2.png?raw=true" width = 500>
 </p>
@@ -81,14 +77,14 @@ unable to find sdk 'macosx.internal'
 ```
 
 
-##### 3. bridgeos(3.0) 报错
+#### 3. bridgeos(3.0) 报错
 <p align="left" >
   <img src="https://github.com/gltwy/objc4/blob/master/images/image3.png?raw=true" width = 500>
 </p>
 
 - 删除```bridgeos(3.0)```即可
 
-##### 4. OS_UNFAIR_LOCK_ADAPTIVE_SPIN 报错
+#### 4. OS_UNFAIR_LOCK_ADAPTIVE_SPIN 报错
 
 <p align="left" >
   <img src="https://github.com/gltwy/objc4/blob/master/images/image4.png?raw=true" width = 500>
@@ -101,7 +97,7 @@ Use of undeclared identifier 'OS_UNFAIR_LOCK_ADAPTIVE_SPIN'
 将此处修改为```os_unfair_lock_lock(&mLock)```;
 
 
-##### 5. 
+#### 5. Use of undeclared identifier xxx
 ```
 Use of undeclared identifier 'DYLD_MACOSX_VERSION_10_11'
 
@@ -118,19 +114,19 @@ Use of undeclared identifier 'DYLD_MACOSX_VERSION_10_12'
 #define DYLD_MACOSX_VERSION_10_13 0x000A0D00
 #define DYLD_MACOSX_VERSION_10_12 0x000A0C00
 ```
-##### 6. OrderFiles/libobjc.order 报错
+#### 6. OrderFiles/libobjc.order 报错
 ```
 Can't open order file: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/AppleInternal/OrderFiles/libobjc.order
 ```
 将 ```Build Settings``` - ```Order file``` 路径改为 ```$(SRCROOT)/libobjc.order``` 即可
 
-##### 7.  -lCrashReporterClient 报错
+#### 7.  -lCrashReporterClient 报错
 ```
 ld: library not found for -lCrashReporterClient
 ```
 将 ```Build Settings``` - ```other link flags``` 删除 ```-lCrashReporterClient``` 即可
 
-##### 8. Script 报错
+#### 8. Script 报错
 ```
 /xcodebuild:1:1: SDK "macosx.internal" cannot be located.
 /xcrun:1:1: sh -c '/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -sdk macosx.internal -find clang++ 2> /dev/null' failed with exit code 16384: (null) (errno=No such file or directory)
@@ -139,7 +135,7 @@ ld: library not found for -lCrashReporterClient
 
 将 ```Build Phases``` - ```Run Script(markc)``` 中 ```macosx.internal``` 改为  ```macosx```
 
-##### 9. 新建target测试即可使用
+#### 9. 新建target测试即可使用
 <p align="left" >
   <img src="https://github.com/gltwy/objc4/blob/master/images/image5.png?raw=true" width = 500>
 </p>
@@ -149,7 +145,7 @@ ld: library not found for -lCrashReporterClient
   <img src="https://github.com/gltwy/objc4/blob/master/images/image6.png?raw=true" width = 300>
 </p>
 
-##### 附注
+### 附注
 github 图片不显示配置（亲测可用）
 
 ```
